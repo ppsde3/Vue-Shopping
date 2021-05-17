@@ -10,7 +10,6 @@ exports.create = (req, res) => {
     });
     return;
   }
-  
   const product = {
     name: req.body.name,
     title: req.body.title,
@@ -33,10 +32,9 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-
   Product.findAll({ where: condition })
     .then(data => {
-      res.send(data);
+     res.send(data);
     })
     .catch(err => {
       res.status(500).send({

@@ -1,12 +1,10 @@
 module.exports = app => {
-    const shopping = require("../controller/shoppingController");
+    const product = require("../controller/shoppingController");
     var router = require("express").Router();
   
-    // Create a new Tutorial
-    router.post("/", shopping.create);
+    router.post("/add", product.create);
   
-    // Retrieve all Tutorials
-    router.get("/products", shopping.findAll);
+    router.get("/products", product.findAll);
   
     app.use('/', router);
   };

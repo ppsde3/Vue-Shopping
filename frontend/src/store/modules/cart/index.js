@@ -17,7 +17,7 @@ const actions = {
       });
     },
     addCartItem ({ commit }, cartItem) {
-      axios.post('/api/cart', cartItem).then((response) => {
+      axios.post('/api/addCart', cartItem).then((response) => {
         commit('UPDATE_CART_ITEMS', response.data)
       });
     },

@@ -46,7 +46,7 @@
         />
       </div>
 
-      <button @click="add_Product" class="btn btn-success">Submit</button>
+      <button @click="saveProduct" class="btn btn-success">Submit</button>
     </div>
 
     <div v-else>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import ProductService from "../../services/ProductService";
+import ProductDataService from "../../services/AddProductService";
 export default {
   name: "add-product",
   data() {
@@ -77,8 +77,8 @@ export default {
         title: this.product.title,
         description: this.product.description,
         price: this.product.price
-      };
-      TutorialDataService.create(data)
+      }
+      ProductDataService.create(data)
         .then(response => {
           console.log(response.data);
         })

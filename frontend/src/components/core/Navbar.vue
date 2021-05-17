@@ -27,7 +27,6 @@
               <router-link to="/add"  class="button is-warning">   <p>
     Add Product </p>
               </router-link>
-
             </div>
           </div>
         </div>

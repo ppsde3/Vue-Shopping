@@ -20,11 +20,9 @@
       <br>
     </ul>
     <div class="buttons">
-    <router-link to="/checkout" class="button is-primary">
     <button :disabled="!cartItems.length" class="button is-info">
       Checkout (<span class="has-text-weight-bold">${{ cartTotal }}</span>)
     </button>
-    </router-link>
     
  <button class="button is-danger is-outlined" @click="removeAllCartItems">
     <span>Delete All items</span>

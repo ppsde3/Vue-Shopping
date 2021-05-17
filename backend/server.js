@@ -9,11 +9,10 @@ const db = require("./models/index");
 const app=express();
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:8080"
   };
   app.use(cors(corsOptions));
 
-const PRODUCT_DATA_FILE=path.join(__dirname,'server-product-data.json');
 const CART_DATA_FILE=path.join(__dirname,'server-cart-data.json');
 
 
@@ -29,20 +28,16 @@ app.use((req,res,next)=>{
 });
 
 require("./routes/shoppingRoutes")(app);
+require("./routes/cartRoutes")(app);
 
-/*app.get('/products',(req,res)=>{
-    fs.readFile(PRODUCT_DATA_FILE,(err,data)=>{
-        res.setHeader('Cache-Control','no-cache');
-        res.json(JSON.parse(data));
-    });
-}), */
-app.get('/cart',(req,res)=>{
+
+/*app.get('/cart',(req,res)=>{
     fs.readFile(CART_DATA_FILE,(err,data)=>{
         res.setHeader('Cache-Control','no-cache');
         res.json(JSON.parse(data));
     });
-}),
-app.delete('/cart/delete/all',(req,res)=>{
+}), */
+/*app.delete('/cart/delete/all',(req,res)=>{
     fs.readFile(CART_DATA_FILE,()=>{
         let emptyCart=[];
     fs.writeFile(CART_DATA_FILE,JSON.stringify(emptyCart,null,4),()=>{
@@ -68,7 +63,7 @@ app.delete('/cart/delete',(req,res)=>{
       });
     });
 }),
-app.post('/cart',(req,res)=>{
+/*app.post('/cart',(req,res)=>{
     fs.readFile(CART_DATA_FILE,(err,data)=>{
         const cartProducts=JSON.parse(data);
         const newCartProduct={
@@ -93,7 +88,7 @@ app.post('/cart',(req,res)=>{
         res.json(cartProducts);
     });
   });
-})
+}) */
 
 app.listen(3000,()=>{
        console.log("Server is running on port 3000");

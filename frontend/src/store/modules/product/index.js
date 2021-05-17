@@ -17,7 +17,7 @@ const actions={
         });
     },
     postProductItems({commit},productItem){
-        axios.post('/api/createProduct',productItem).then((response)=>{
+        axios.post('/api/add',productItem).then((response)=>{
             commit('UPDATE_PRODUCT_ITEMS',response.data)
         });
     }
