@@ -14,7 +14,8 @@ exports.create = (req, res) => {
     name: req.body.name,
     title: req.body.title,
     description: req.body.description,
-    price: req.body.price
+    price: req.body.price,
+    cartId: req.id
   };
 
   Product.create(product)

@@ -1,5 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Product = sequelize.define("product", {
+      cartId:{
+         type:Sequelize.INTEGER
+      },
       title: {
         type: Sequelize.STRING
       },

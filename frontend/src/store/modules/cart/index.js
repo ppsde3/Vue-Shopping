@@ -23,11 +23,13 @@ const actions = {
       });
     },
     doCheckOut ({ commit }, cartItem) {
+      console.log(cartItem);
       axios.post('/api/addCart', cartItem).then((response) => {
         commit('UPDATE_CART_ITEMS', response.data)
       });
     },
     addCartItem ({ commit }, cartItem) {
+      console.log(cartItem);
       axios.post('/api/addCart', cartItem).then((response) => {
         commit('ADD_CART_ITEMS', cartItem);});
     },
