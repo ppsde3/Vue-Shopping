@@ -20,24 +20,24 @@ const Op = db.Sequelize.Op;
    });
 }*/
 
-exports.create = (cartItem, res) => {
+exports.create = (req, res) => {
  /* if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
     return;
   } */
-  Cart.create(cartItem.id)
-    .then(cartItem => {
-      console.log(cartItem);
-     // cart.addProduct({
-        //name: cartItem.name,
-       // title:cartItem.title,
+  Cart.create({})
+    .then(cart => {
+      console.log(req.body);
+     products.create({
+        name: req.body.name,
+       //title:cartItem.title,
        // description: cartItem.description,
-        cartId:cartItem.id
-     // }).then(data=>{
-      //  res.send(data);
-    //  })
+        cartId:cart.id
+      }).then(data=>{
+       res.send(data);
+    })
     })
     .catch(err => {
       res.status(500).send({
@@ -48,9 +48,9 @@ exports.create = (cartItem, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const title = req.body.id;
-  var condition = id ? { id: { [Op.like]: `%${title}%` } } : null;
-  Cart.findAll({ where: {condition},include:products })
+  //const title = req.body.id;
+ // var condition = id ? { id: { [Op.like]: `%${title}%` } } : null;
+  Cart.findAll({include:products })
     .then(data => {
       res.send(data);
     })

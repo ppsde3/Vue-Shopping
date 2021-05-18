@@ -18,7 +18,7 @@ const CART_DATA_FILE=path.join(__dirname,'server-cart-data.json');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-db.sequelize.sync({force:true});
+db.sequelize.sync();
 
 app.use((req,res,next)=>{
     res.setHeader('Cache-Contol','no-cache ,no-store, must-revalidate');
