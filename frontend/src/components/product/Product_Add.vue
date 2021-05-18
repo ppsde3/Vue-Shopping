@@ -78,15 +78,16 @@ export default {
         description: this.product.description,
         price: this.product.price
       }
+      this.product = {};
       ProductDataService.create(data)
         .then(response => {
+          alert("Product Added successfully");
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     },
-    
     newProduct() {
       this.product = {};
     }

@@ -7,7 +7,13 @@ const state={
 const mutations={
     UPDATE_CART_ITEMS(state,payload){
         state.cartItems=payload;
-    }
+    },
+    DELETE_CART_ITEMS(state){
+      state.cartItems=[];
+    },
+    ADD_CART_ITEMS(state,payload){
+      state.cartItems.push(payload);
+    },
 };
 
 const actions = {
@@ -16,10 +22,14 @@ const actions = {
         commit('UPDATE_CART_ITEMS', response.data)
       });
     },
-    addCartItem ({ commit }, cartItem) {
+    doCheckOut ({ commit }, cartItem) {
       axios.post('/api/addCart', cartItem).then((response) => {
         commit('UPDATE_CART_ITEMS', response.data)
       });
+    },
+    addCartItem ({ commit }, cartItem) {
+      axios.post('/api/addCart', cartItem).then((response) => {
+        commit('ADD_CART_ITEMS', cartItem);});
     },
     removeCartItem ({ commit }, cartItem) {
       axios.delete('/api/cart/delete', cartItem).then((response) => {
@@ -28,7 +38,7 @@ const actions = {
     },
     removeAllCartItems ({ commit }) {
       axios.delete('/api/cart/delete/all').then((response) => {
-        commit('UPDATE_CART_ITEMS', response.data)
+        commit('DELETE_CART_ITEMS', response.data)
       });
     }
   }
