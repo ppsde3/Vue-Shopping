@@ -14,6 +14,10 @@ var corsOptions = {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+const pb = require("./models");
+const Role = pb.role;
+
 db.sequelize.sync({force:true}).then(()=>{
     console.log("Database is Ready");
     initial();
@@ -41,7 +45,7 @@ app.use((req,res,next)=>{
 require("./routes/shoppingRoutes")(app);
 require("./routes/cartRoutes")(app);
 require("./routes/authRoutes")(app);
-require("./routes/cartRoutes")(app);
+require("./routes/userRoutes")(app);
 
 app.listen(3000,()=>{
        console.log("Server is running on port 3000");
