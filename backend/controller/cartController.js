@@ -3,37 +3,15 @@ const db = require("../models");
 const Cart = db.cart;
 const Op = db.Sequelize.Op;
 
-/*exports.create=(name,cart)=>{
-  return Cart.create({
-    title: cart.title,
-    name: name,
-    description: cart.description,
-    price:cart.price
-  }).then(cart => {
-    res.send(cart);
-   })
-   .catch(err => {
-     res.status(500).send({
-       message:
-         err.message || "Some error occurred while creating the Product."
-     });
-   });
-}*/
-
 exports.create = (req, res) => {
- /* if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  } */
   Cart.create({})
     .then(cart => {
       console.log(req.body);
      products.create({
         name: req.body.name,
-       //title:cartItem.title,
-       // description: cartItem.description,
+        title:req.body.title,
+        description: req.body.description,
+        price:req.body.price,
         cartId:cart.id
       }).then(data=>{
        res.send(data);
@@ -48,6 +26,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+  console.log(req.body.id);
   //const title = req.body.id;
  // var condition = id ? { id: { [Op.like]: `%${title}%` } } : null;
   Cart.findAll({include:products })

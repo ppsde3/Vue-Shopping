@@ -10,12 +10,13 @@ exports.create = (req, res) => {
     });
     return;
   }
+  console.log(req.body.cartId);
   const product = {
     name: req.body.name,
     title: req.body.title,
     description: req.body.description,
-    price: req.body.price,
-    cartId: req.id
+    price: req.body.price
+    
   };
 
   Product.create(product)

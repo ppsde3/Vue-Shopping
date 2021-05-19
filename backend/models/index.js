@@ -21,7 +21,7 @@ db.sequelize = sequelize;
 db.products = require("./Product.js")(sequelize, Sequelize);
 db.cart=require("./Cart.js")(sequelize,Sequelize);
 
-db.cart.hasMany(db.products);
+db.cart.hasMany(db.products,{as:'products'});
 
 
 module.exports = db;
