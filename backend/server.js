@@ -36,9 +36,13 @@ function initial() {
   }
 
 app.use((req,res,next)=>{
-    res.setHeader('Cache-Contol','no-cache ,no-store, must-revalidate');
-    res.setHeader('Pragma','no-cache');
-    res.setHeader('Expires','0');
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+ //   res.setHeader('Cache-Contol','no-cache ,no-store, must-revalidate');
+ //   res.setHeader('Pragma','no-cache');
+  //  res.setHeader('Expires','0');
     next();
 });
 
