@@ -1,61 +1,28 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import CartList from '../components/cart/Cart_List.vue';
-import ProductList from '../components/product/Product_List.vue';
-import Home from '../components/core/Home.vue';
-import Login from '../components/core/Login.vue';
-import Register from '../components/core/Register.vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/inventory',
-    component: ProductList
-  },
-  {
-    path: '/cart',
-    component: CartList
-  },
-  {
     path: '/',
-    name: 'home',
-    component: Home
+    component: () => import('../layouts/Base.vue'),
+    children: [ 
+      { path: '', component: () => import('../views/home/Products.vue') },
+      { path: 'details/:idProduct', component: () => import('../views/home/Details.vue') },
+      { path: 'cart', component: () => import('../views/home/Cart.vue') }
+    ]
   },
   {
     path: '/login',
-    component: Login
-  },
-  {
-    path: '/register',
-    component: Register
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    component: () => import("../components/core/BoardAdmin.vue")
-  },
-  {
-    path: '/user',
-    name: 'user',
-    component: () => import("../components/core/BoardUser.vue")
-  },
-  {
-    path: "/add",
-    name: "add",
-    component: () => import("../components/product/Product_Add")
-  },
-  {
-    path: "/checkout",
-    name: "checkout",
-    component: () => import("../components/cart/CheckOut.vue")
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: () => import("../components/core/Profile.vue")
+    component: () => import('../views/account/Login.vue')
   },
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
+const router = new VueRouter({
+  // mode: 'history',
+  base: process.env.BASE_URL,
   routes
-});
-export default router;
+})
+
+export default router

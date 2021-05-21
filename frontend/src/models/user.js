@@ -5,4 +5,3 @@ export default class User {
       this.password = password;
     }
   }
-  
