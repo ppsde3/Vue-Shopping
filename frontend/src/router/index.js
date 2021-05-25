@@ -17,10 +17,20 @@ const routes = [
     path: '/login',
     component: () => import('../views/account/Login.vue')
   },
+  {
+    path: '/register',
+    component: () => import('../views/account/SignUp.vue')
+  },
+  {
+    path: '/admin/add',
+    component: () => import('../components/products/AddProduct.vue'),
+    meta: {
+      isAdmin: true
+    }
+  },
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
