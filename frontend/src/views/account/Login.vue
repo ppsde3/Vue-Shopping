@@ -8,13 +8,13 @@
           </div>
           <div>
             <div class="form-group">
-              <label for="email">Email address</label>
+              <label for="username">UserName</label>
               <input
-                type="email"
+                type="username"
                 class="form-control"
-                id="email"
+                id="username"
                 aria-describedby="emailHelp"
-                v-model="user.email"
+                v-model="user.username"
                 
               />
               <small

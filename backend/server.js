@@ -1,10 +1,9 @@
-const path=require('path');
 const fs=require('fs');
 const bodyParser = require('body-parser');
 const express=require('express');
 const cors = require("cors");
 const db = require("./models/index");
-
+const User = require("./models/userModel");
 const app=express();
 
 var corsOptions = {
@@ -40,11 +39,9 @@ app.use((req,res,next)=>{
     "Access-Control-Allow-Headers",
     "x-access-token, Origin, Content-Type, Accept"
   );
- //   res.setHeader('Cache-Contol','no-cache ,no-store, must-revalidate');
- //   res.setHeader('Pragma','no-cache');
-  //  res.setHeader('Expires','0');
     next();
 });
+
 
 require("./routes/shoppingRoutes")(app);
 require("./routes/cartRoutes")(app);

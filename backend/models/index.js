@@ -30,6 +30,8 @@ db.role.belongsToMany(db.user, {
   foreignKey: "roleId",
   otherKey: "userId"
 });
+db.user.hasMany(db.cart);
+db.cart.belongsTo(db.user);
 
 db.user.belongsToMany(db.role, {
   through: "user_roles",

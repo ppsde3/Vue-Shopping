@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import SignUp from '../views/account/SignUp.vue'
+import AddProduct from '../components/products/AddProduct.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,15 +19,12 @@ const routes = [
     component: () => import('../views/account/Login.vue')
   },
   {
-    path: '/register',
-    component: () => import('../views/account/SignUp.vue')
+    path: '/signup',
+    component: SignUp
   },
   {
-    path: '/admin/add',
-    component: () => import('../components/products/AddProduct.vue'),
-    meta: {
-      isAdmin: true
-    }
+    path: '/add',
+    component: AddProduct,
   },
 ]
 

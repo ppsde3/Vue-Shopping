@@ -9,40 +9,14 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
-  })
-    .then(user => {
-      if (req.body.roles) {
-        Role.findAll({
-          where: {
-            name: {
-              [Op.or]: req.body.roles
-            }
-          }
-        }).then(roles => {
-          user.setRoles(roles).then(() => {
-            res.send({ message: "User was registered successfully!" });
-          });
-        });
-      } else {
-        user.setRoles([1]).then(() => {
-          res.send({ message: "User was registered successfully!" });
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
-    });
+  User.create(req.body).then((response)=>res.send(response)).catch(err=>console.log("err: ",err))
 };
 
 exports.signin = (req, res) => {
   console.log(req.body);
   User.findOne({
     where: {
-      username: req.body.username
+     // username: req.body.username
     }
   })
     .then(user => {
@@ -50,12 +24,7 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-
-      if (!passwordIsValid) {
+      if (user.password!=req.body.password) {
         return res.status(401).send({
           accessToken: null,
           message: "Invalid Password!"
@@ -74,7 +43,6 @@ exports.signin = (req, res) => {
         res.status(200).send({
           id: user.id,
           username: user.username,
-          email: user.email,
           roles: authorities,
           accessToken: token
         });

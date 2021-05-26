@@ -2,6 +2,7 @@
   <div>
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      
         <router-link class="navbar-brand" to="/">CS-eCommerce</router-link>
         <div class="ml-auto">
           <div v-if="user.photoURL">
@@ -20,6 +21,7 @@
             </router-link>
           </div>
           <router-link v-else class="btn btn-primary my-2 my-sm-0" to="/login">Login</router-link>
+           <router-link  class="btn btn-primary my-2 my-sm-0" to="/signup">SignUp</router-link>
         </div>
       </nav>
     </div>
